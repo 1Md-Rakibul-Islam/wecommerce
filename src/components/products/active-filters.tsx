@@ -27,11 +27,11 @@ function ActiveFiltersComponent() {
   const search = searchParams.get('search');
   if (search) chips.push({ key: 'search', label: 'Search', value: `"${search}"` });
   const category = searchParams.get('category');
-  if (category) chips.push({ key: 'category', label: 'Category', value: category });
+  if (category) chips.push({ key: 'category', label: 'Category', value: category.replace(/,/g, ', ') });
   const subcategory = searchParams.get('subcategory');
   if (subcategory) chips.push({ key: 'subcategory', label: 'Subcategory', value: subcategory });
   const brand = searchParams.get('brand');
-  if (brand) chips.push({ key: 'brand', label: 'Brand', value: brand });
+  if (brand) chips.push({ key: 'brand', label: 'Brand', value: brand.replace(/,/g, ', ') });
   const minPrice = searchParams.get('minPrice');
   const maxPrice = searchParams.get('maxPrice');
   if (minPrice || maxPrice) {

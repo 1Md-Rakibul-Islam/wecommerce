@@ -49,8 +49,8 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
   const searchParams = useSearchParams();
   const activeFilters = hasActiveFilters(searchParams);
 
-  const currentCategory = searchParams.get('category') || '';
-  const currentBrand = searchParams.get('brand') || '';
+  const currentCategories = searchParams.get('category')?.split(',').filter(Boolean) || [];
+  const currentBrands = searchParams.get('brand')?.split(',').filter(Boolean) || [];
   const currentMinPrice = Number(searchParams.get('minPrice')) || 0;
   const currentMaxPrice = Number(searchParams.get('maxPrice')) || facets.priceRange.max;
   const currentMinRating = Number(searchParams.get('minRating')) || 0;
@@ -80,23 +80,29 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
     [facets.priceRange, navigate],
   );
 
-  const handleCategoryChange = useCallback(
+  const handleCategoryToggle = useCallback(
     (category: string) => {
+      const newCats = currentCategories.includes(category)
+        ? currentCategories.filter((c) => c !== category)
+        : [...currentCategories, category];
       navigate({
-        category: currentCategory === category ? undefined : category,
+        category: newCats.length > 0 ? newCats.join(',') : undefined,
         subcategory: undefined,
       });
     },
-    [navigate, currentCategory],
+    [navigate, currentCategories],
   );
 
-  const handleBrandChange = useCallback(
+  const handleBrandToggle = useCallback(
     (brand: string) => {
+      const newBrands = currentBrands.includes(brand)
+        ? currentBrands.filter((b) => b !== brand)
+        : [...currentBrands, brand];
       navigate({
-        brand: currentBrand === brand ? undefined : brand,
+        brand: newBrands.length > 0 ? newBrands.join(',') : undefined,
       });
     },
-    [navigate, currentBrand],
+    [navigate, currentBrands],
   );
 
   const handleRatingChange = useCallback(
@@ -149,8 +155,8 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
               >
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={currentCategory === cat.value}
-                    onCheckedChange={() => handleCategoryChange(cat.value)}
+                    checked={currentCategories.includes(cat.value)}
+                    onCheckedChange={() => handleCategoryToggle(cat.value)}
                   />
                   <span className="text-sm group-hover:text-primary transition-colors">
                     {cat.value}
@@ -193,8 +199,8 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
               >
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={currentBrand === brand.value}
-                    onCheckedChange={() => handleBrandChange(brand.value)}
+                    checked={currentBrands.includes(brand.value)}
+                    onCheckedChange={() => handleBrandToggle(brand.value)}
                   />
                   <span className="text-sm group-hover:text-primary transition-colors">
                     {brand.value}

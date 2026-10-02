@@ -28,9 +28,9 @@ export const SORT_OPTIONS = Object.keys(SORT_LABELS) as SortOption[];
 export function filtersToParams(filters: ProductFilters): Record<string, string> {
   const params: Record<string, string> = {};
   if (filters.search) params.search = filters.search;
-  if (filters.category) params.category = filters.category;
+  if (filters.category) params.category = Array.isArray(filters.category) ? filters.category.join(',') : filters.category;
   if (filters.subcategory) params.subcategory = filters.subcategory;
-  if (filters.brand) params.brand = filters.brand;
+  if (filters.brand) params.brand = Array.isArray(filters.brand) ? filters.brand.join(',') : filters.brand;
   if (filters.minPrice !== undefined) params.minPrice = String(filters.minPrice);
   if (filters.maxPrice !== undefined) params.maxPrice = String(filters.maxPrice);
   if (filters.minRating !== undefined) params.minRating = String(filters.minRating);
@@ -45,11 +45,11 @@ export function paramsToFilters(params: URLSearchParams): ProductFilters {
   const search = params.get('search');
   if (search) filters.search = search;
   const category = params.get('category');
-  if (category) filters.category = category;
+  if (category) filters.category = category.includes(',') ? category.split(',').map(c => c.trim()) : category;
   const subcategory = params.get('subcategory');
   if (subcategory) filters.subcategory = subcategory;
   const brand = params.get('brand');
-  if (brand) filters.brand = brand;
+  if (brand) filters.brand = brand.includes(',') ? brand.split(',').map(b => b.trim()) : brand;
   const minPrice = params.get('minPrice');
   if (minPrice) filters.minPrice = Number(minPrice);
   const maxPrice = params.get('maxPrice');

@@ -56,7 +56,7 @@ function applySorting(products: Product[], sort: SortOption): Product[] {
   }
 }
 
-function applyFilters(products: Product[], filters: ProductFilters): Product[] {
+function applyFilters(products: Product[], filters: ProductFilters, ignoreCategory = false, ignoreBrand = false, ignorePrice = false): Product[] {
   return products.filter((p) => {
     if (filters.search) {
       const q = filters.search.toLowerCase();
@@ -69,12 +69,32 @@ function applyFilters(products: Product[], filters: ProductFilters): Product[] {
         p.tags.some((t) => t.toLowerCase().includes(q));
       if (!matches) return false;
     }
-    if (filters.category && p.category !== filters.category) return false;
+    
+    if (!ignoreCategory && filters.category && filters.category.length > 0) {
+      if (typeof filters.category === 'string') {
+        if (p.category !== filters.category) return false;
+      } else if (Array.isArray(filters.category) && !filters.category.includes(p.category)) {
+        return false;
+      }
+    }
+    
     if (filters.subcategory && p.subcategory !== filters.subcategory) return false;
-    if (filters.brand && p.brand !== filters.brand) return false;
-    if (filters.minPrice !== undefined && p.price < filters.minPrice) return false;
-    if (filters.maxPrice !== undefined && p.price > filters.maxPrice) return false;
+    
+    if (!ignoreBrand && filters.brand && filters.brand.length > 0) {
+      if (typeof filters.brand === 'string') {
+        if (p.brand !== filters.brand) return false;
+      } else if (Array.isArray(filters.brand) && !filters.brand.includes(p.brand)) {
+        return false;
+      }
+    }
+    
+    if (!ignorePrice) {
+      if (filters.minPrice !== undefined && p.price < filters.minPrice) return false;
+      if (filters.maxPrice !== undefined && p.price > filters.maxPrice) return false;
+    }
+    
     if (filters.minRating !== undefined && p.rating < filters.minRating) return false;
+    
     if (filters.tags && filters.tags.length > 0) {
       if (!filters.tags.every((tag) => p.tags.includes(tag))) return false;
     }
@@ -82,39 +102,21 @@ function applyFilters(products: Product[], filters: ProductFilters): Product[] {
   });
 }
 
-function computeFacets(products: Product[], activeFilters: ProductFilters): Facets {
-  const categoryMap = new Map<string, number>();
-  const brandMap = new Map<string, number>();
-  const tagMap = new Map<string, number>();
-
+function computeFacetValues(products: Product[], field: 'category' | 'brand' | 'tags'): FacetValue[] {
+  const map = new Map<string, number>();
   for (const p of products) {
-    const cat = categoryMap.get(p.category) || 0;
-    categoryMap.set(p.category, cat + 1);
-
-    const brand = brandMap.get(p.brand) || 0;
-    brandMap.set(p.brand, brand + 1);
-
-    for (const tag of p.tags) {
-      const t = tagMap.get(tag) || 0;
-      tagMap.set(tag, t + 1);
+    if (field === 'tags') {
+      for (const tag of p.tags) {
+        map.set(tag, (map.get(tag) || 0) + 1);
+      }
+    } else {
+      const val = p[field];
+      map.set(val, (map.get(val) || 0) + 1);
     }
   }
-
-  const toFacetValues = (map: Map<string, number>): FacetValue[] =>
-    Array.from(map.entries())
-      .map(([value, count]) => ({ value, count }))
-      .sort((a, b) => b.count - a.count);
-
-  const prices = products.map((p) => p.price);
-  return {
-    categories: toFacetValues(categoryMap),
-    brands: toFacetValues(brandMap),
-    tags: toFacetValues(tagMap),
-    priceRange: {
-      min: prices.length ? Math.floor(Math.min(...prices)) : 0,
-      max: prices.length ? Math.ceil(Math.max(...prices)) : 1000,
-    },
-  };
+  return Array.from(map.entries())
+    .map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 export interface ProductsResult extends PaginatedProducts {
@@ -135,7 +137,22 @@ export function getProducts(filters: ProductFilters = {}): ProductsResult {
   const start = (safePage - 1) * limit;
   const paged = sorted.slice(start, start + limit);
 
-  const facets = computeFacets(filtered, filters);
+  // Compute facets properly (ignoring the filter itself for its own facet so checkboxes don't disappear)
+  const categoryProducts = applyFilters(allProducts, filters, true, false, false);
+  const brandProducts = applyFilters(allProducts, filters, false, true, false);
+  const priceProducts = applyFilters(allProducts, filters, false, false, true);
+
+  const prices = priceProducts.map((p) => p.price);
+
+  const facets: Facets = {
+    categories: computeFacetValues(categoryProducts, 'category'),
+    brands: computeFacetValues(brandProducts, 'brand'),
+    tags: computeFacetValues(filtered, 'tags'), // tags can be based on final filtered set
+    priceRange: {
+      min: prices.length ? Math.floor(Math.min(...prices)) : 0,
+      max: prices.length ? Math.ceil(Math.max(...prices)) : 1000,
+    },
+  };
 
   return {
     products: paged,

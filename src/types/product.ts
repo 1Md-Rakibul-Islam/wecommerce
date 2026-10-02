@@ -34,9 +34,9 @@ export interface Review {
 
 export interface ProductFilters {
   search?: string;
-  category?: string;
+  category?: string | string[];
   subcategory?: string;
-  brand?: string;
+  brand?: string | string[];
   minPrice?: number;
   maxPrice?: number;
   minRating?: number;
