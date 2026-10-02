@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Electronics",
+    "count": 65,
+    "brands": [
+      "PixelPro",
+      "SoundWave",
+      "ElectroLux",
+      "TechNova"
+    ],
+    "subcategories": [
+      "Cameras",
+      "Wearables",
+      "Speakers",
+      "Headphones",
+      "Accessories"
+    ]
+  },
+  {
+    "name": "Home & Living",
+    "count": 65,
+    "brands": [
+      "NordicHome",
+      "Lumina",
+      "CozyLiving",
+      "ArtisanCraft"
+    ],
+    "subcategories": [
+      "Decor",
+      "Kitchen",
+      "Furniture",
+      "Bedding",
+      "Lighting"
+    ]
+  },
+  {
+    "name": "Fashion",
+    "count": 65,
+    "brands": [
+      "ModeChic",
+      "Vesta",
+      "AtlasWear",
+      "UrbanThread"
+    ],
+    "subcategories": [
+      "Men",
+      "Accessories",
+      "Footwear",
+      "Bags",
+      "Women"
+    ]
+  },
+  {
+    "name": "Sports & Outdoors",
+    "count": 65,
+    "brands": [
+      "TrailBlaze",
+      "ZenFlow",
+      "PeakFit",
+      "AquaMarine"
+    ],
+    "subcategories": [
+      "Yoga",
+      "Running",
+      "Cycling",
+      "Camping",
+      "Fitness"
+    ]
+  },
+  {
+    "name": "Beauty & Health",
+    "count": 65,
+    "brands": [
+      "VitaRay",
+      "PureEssence",
+      "GlowLab",
+      "BloomBotanics"
+    ],
+    "subcategories": [
+      "Fragrance",
+      "Supplements",
+      "Haircare",
+      "Skincare",
+      "Tools"
+    ]
+  },
+  {
+    "name": "Books & Media",
+    "count": 65,
+    "brands": [
+      "InkPress",
+      "NovelHouse",
+      "LiterateCo",
+      "PageTurner"
+    ],
+    "subcategories": [
+      "Children",
+      "Non-Fiction",
+      "Fiction",
+      "Stationery",
+      "Comics"
+    ]
+  },
+  {
+    "name": "Toys & Games",
+    "count": 65,
+    "brands": [
+      "BrightMinds",
+      "GameNight",
+      "PlayForge",
+      "WonderToys"
+    ],
+    "subcategories": [
+      "Board Games",
+      "Outdoor",
+      "Educational",
+      "Action Figures",
+      "Puzzles"
+    ]
+  },
+  {
+    "name": "Garden",
+    "count": 65,
+    "brands": [
+      "GardenCo",
+      "GreenThumb",
+      "BloomSpace",
+      "EarthWorks"
+    ],
+    "subcategories": [
+      "Decor",
+      "Outdoor Furniture",
+      "Pots",
+      "Plants",
+      "Tools"
+    ]
+  }
+]
