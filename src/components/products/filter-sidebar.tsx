@@ -28,7 +28,7 @@ function FilterSection({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="py-4">
+    <div className="py-4 px-5">
       <button
         className="flex w-full items-center justify-between text-sm font-semibold"
         onClick={() => setOpen((prev) => !prev)}
