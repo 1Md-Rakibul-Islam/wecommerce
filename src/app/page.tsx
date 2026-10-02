@@ -1,54 +1,85 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, Truck, ShieldCheck, RotateCcw, Headphones } from 'lucide-react';
-import { fetchFeaturedProducts, fetchNewArrivals } from '@/lib/api/server-fetch';
-import { ProductCard } from '@/components/products/product-card';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowRight,
+  Truck,
+  ShieldCheck,
+  RotateCcw,
+  Headphones,
+} from "lucide-react";
+import {
+  fetchFeaturedProducts,
+  fetchNewArrivals,
+} from "@/lib/api/server-fetch";
+import { ProductCard } from "@/components/products/product-card";
+import { Button } from "@/components/ui/button";
 
 const CATEGORIES = [
   {
-    name: 'Electronics',
-    href: '/shop?category=Electronics',
-    image: 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Headphones, cameras, smart devices',
+    name: "Electronics",
+    href: "/shop?category=Electronics",
+    image:
+      "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Headphones, cameras, smart devices",
   },
   {
-    name: 'Fashion',
-    href: '/shop?category=Fashion',
-    image: 'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Clothing, footwear, accessories',
+    name: "Fashion",
+    href: "/shop?category=Fashion",
+    image:
+      "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Clothing, footwear, accessories",
   },
   {
-    name: 'Home & Living',
-    href: '/shop?category=Home+%26+Living',
-    image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Furniture, decor, kitchenware',
+    name: "Home & Living",
+    href: "/shop?category=Home+%26+Living",
+    image:
+      "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Furniture, decor, kitchenware",
   },
   {
-    name: 'Sports & Outdoors',
-    href: '/shop?category=Sports+%26+Outdoors',
-    image: 'https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Fitness, camping, cycling gear',
+    name: "Sports & Outdoors",
+    href: "/shop?category=Sports+%26+Outdoors",
+    image:
+      "https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Fitness, camping, cycling gear",
   },
   {
-    name: 'Beauty & Health',
-    href: '/shop?category=Beauty+%26+Health',
-    image: 'https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Skincare, supplements, fragrance',
+    name: "Beauty & Health",
+    href: "/shop?category=Beauty+%26+Health",
+    image:
+      "https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Skincare, supplements, fragrance",
   },
   {
-    name: 'Books & Media',
-    href: '/shop?category=Books+%26+Media',
-    image: 'https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&w=600',
-    description: 'Fiction, non-fiction, stationery',
+    name: "Books & Media",
+    href: "/shop?category=Books+%26+Media",
+    image:
+      "https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description: "Fiction, non-fiction, stationery",
   },
 ];
 
 const FEATURES = [
-  { icon: Truck, title: 'Free Shipping', description: 'On all orders over $75' },
-  { icon: ShieldCheck, title: 'Secure Checkout', description: 'Encrypted & protected' },
-  { icon: RotateCcw, title: '30-Day Returns', description: 'Hassle-free returns' },
-  { icon: Headphones, title: '24/7 Support', description: 'Always here to help' },
+  {
+    icon: Truck,
+    title: "Free Shipping",
+    description: "On all orders over $75",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Secure Checkout",
+    description: "Encrypted & protected",
+  },
+  {
+    icon: RotateCcw,
+    title: "30-Day Returns",
+    description: "Hassle-free returns",
+  },
+  {
+    icon: Headphones,
+    title: "24/7 Support",
+    description: "Always here to help",
+  },
 ];
 
 // SSG: Homepage is statically generated at build time
@@ -69,7 +100,7 @@ export default function HomePage() {
                 New Season, New Arrivals
               </span>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-balance">
-                Premium products for{' '}
+                Premium products for{" "}
                 <span className="text-primary">modern living</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
@@ -85,7 +116,11 @@ export default function HomePage() {
                   </Button>
                 </Link>
                 <Link href="/shop?sort=newest">
-                  <Button variant="outline" size="lg" className="h-12 px-8 text-base">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-12 px-8 text-base"
+                  >
                     New Arrivals
                   </Button>
                 </Link>
@@ -98,12 +133,16 @@ export default function HomePage() {
                 <div className="h-8 w-px bg-border" />
                 <div>
                   <div className="text-2xl font-bold">8</div>
-                  <div className="text-sm text-muted-foreground">Categories</div>
+                  <div className="text-sm text-muted-foreground">
+                    Categories
+                  </div>
                 </div>
                 <div className="h-8 w-px bg-border" />
                 <div>
                   <div className="text-2xl font-bold">4.5★</div>
-                  <div className="text-sm text-muted-foreground">Avg Rating</div>
+                  <div className="text-sm text-muted-foreground">
+                    Avg Rating
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,7 +182,9 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold">{feature.title}</p>
-                  <p className="text-xs text-muted-foreground">{feature.description}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -154,10 +195,17 @@ export default function HomePage() {
       <section className="container-page py-12 lg:py-16">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">Shop by Category</h2>
-            <p className="text-muted-foreground mt-1">Find exactly what you are looking for</p>
+            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+              Shop by Category
+            </h2>
+            <p className="text-muted-foreground mt-1">
+              Find exactly what you are looking for
+            </p>
           </div>
-          <Link href="/shop" className="text-sm font-medium text-primary hover:underline hidden sm:block">
+          <Link
+            href="/shop"
+            className="text-sm font-medium text-primary hover:underline hidden sm:block"
+          >
             View all
           </Link>
         </div>
@@ -178,8 +226,12 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-lg font-bold text-white">{category.name}</h3>
-                <p className="text-sm text-white/80 mt-0.5 line-clamp-1">{category.description}</p>
+                <h3 className="text-lg font-bold text-white">
+                  {category.name}
+                </h3>
+                <p className="text-sm text-white/80 mt-0.5 line-clamp-1">
+                  {category.description}
+                </p>
               </div>
             </Link>
           ))}
@@ -190,10 +242,17 @@ export default function HomePage() {
         <div className="container-page py-12 lg:py-16">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">Featured Products</h2>
-              <p className="text-muted-foreground mt-1">Top-rated picks from our collection</p>
+              <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+                Featured Products
+              </h2>
+              <p className="text-muted-foreground mt-1">
+                Top-rated picks from our collection
+              </p>
             </div>
-            <Link href="/shop?sort=rating-desc" className="text-sm font-medium text-primary hover:underline hidden sm:block">
+            <Link
+              href="/shop?sort=rating-desc"
+              className="text-sm font-medium text-primary hover:underline hidden sm:block"
+            >
               View all
             </Link>
           </div>
@@ -208,10 +267,17 @@ export default function HomePage() {
       <section className="container-page py-12 lg:py-16">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">New Arrivals</h2>
-            <p className="text-muted-foreground mt-1">Fresh additions to our store</p>
+            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+              New Arrivals
+            </h2>
+            <p className="text-muted-foreground mt-1">
+              Fresh additions to our store
+            </p>
           </div>
-          <Link href="/shop?sort=newest" className="text-sm font-medium text-primary hover:underline hidden sm:block">
+          <Link
+            href="/shop?sort=newest"
+            className="text-sm font-medium text-primary hover:underline hidden sm:block"
+          >
             View all
           </Link>
         </div>
@@ -228,11 +294,15 @@ export default function HomePage() {
             Ready to start shopping?
           </h2>
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-6">
-            Browse our full catalog of 500+ products with smart filters,
-            fast search, and secure checkout.
+            Browse our full catalog of 500+ products with smart filters, fast
+            search, and secure checkout.
           </p>
           <Link href="/shop">
-            <Button size="lg" variant="secondary" className="h-12 px-8 text-base">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="h-12 px-8 text-base"
+            >
               Browse All Products
               <ArrowRight size={18} className="ml-2" />
             </Button>

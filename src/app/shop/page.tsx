@@ -27,10 +27,11 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 interface ShopPageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default async function ShopPage({ searchParams }: ShopPageProps) {
+export default async function ShopPage(props: ShopPageProps) {
+  const searchParams = await props.searchParams;
   const params = new URLSearchParams();
   for (const [key, value] of Object.entries(searchParams)) {
     if (typeof value === 'string') {
