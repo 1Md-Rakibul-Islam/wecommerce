@@ -92,81 +92,69 @@ export default function HomePage() {
 
   return (
     <div className="animate-fade-in">
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/5">
-        <div className="container-page py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-6 text-center lg:text-left">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                New Season, New Arrivals
-              </span>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-balance">
-                Premium products for{" "}
-                <span className="text-primary">modern living</span>
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Discover 500+ curated products across 8 categories. From
-                electronics to fashion, home goods to sports gear — find exactly
-                what you need with smart search and fast checkout.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                <Link href="/shop">
-                  <Button size="lg" className="h-12 px-8 text-base">
-                    Shop Now
-                    <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
-                <Link href="/shop?sort=newest">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="h-12 px-8 text-base"
-                  >
-                    New Arrivals
-                  </Button>
-                </Link>
-              </div>
-              <div className="flex items-center gap-6 justify-center lg:justify-start pt-4">
-                <div>
-                  <div className="text-2xl font-bold">500+</div>
-                  <div className="text-sm text-muted-foreground">Products</div>
-                </div>
-                <div className="h-8 w-px bg-border" />
-                <div>
-                  <div className="text-2xl font-bold">8</div>
-                  <div className="text-sm text-muted-foreground">
-                    Categories
-                  </div>
-                </div>
-                <div className="h-8 w-px bg-border" />
-                <div>
-                  <div className="text-2xl font-bold">4.5★</div>
-                  <div className="text-sm text-muted-foreground">
-                    Avg Rating
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            alt="Hero background"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black/80 via-black/40 to-black/30 backdrop-blur-[2px]" />
+        </div>
 
-            <div className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden">
-              <Image
-                src="https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                alt="Featured product"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-              <div className="absolute bottom-6 left-6 right-6 bg-background/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Featured</p>
-                    <p className="font-semibold">Premium Electronics</p>
-                  </div>
-                  <Link href="/shop?category=Electronics">
-                    <Button size="sm">Explore</Button>
-                  </Link>
-                </div>
-              </div>
+        {/* Content */}
+        <div className="container-page relative z-10 text-center text-white space-y-6 lg:space-y-8 px-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-medium">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            New Collection 2026
+          </div>
+          
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-balance max-w-4xl mx-auto drop-shadow-lg">
+            Elevate Your Lifestyle with <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">Premium Picks</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+            Discover a curated marketplace of top-tier electronics, fashion, and home goods. Experience seamless shopping from top vendors worldwide.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <Link href="/shop">
+              <Button size="lg" className="h-14 px-8 text-lg rounded-full font-semibold shadow-xl shadow-primary/25 hover:scale-105 transition-transform">
+                Shop The Collection
+                <ArrowRight size={20} className="ml-2" />
+              </Button>
+            </Link>
+            <Link href="/shop?category=Fashion">
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-14 px-8 text-lg rounded-full font-semibold border-white text-white hover:bg-white hover:text-black transition-colors"
+              >
+                Explore Fashion
+              </Button>
+            </Link>
+          </div>
+          
+          {/* Stats Bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 md:pt-16 max-w-4xl mx-auto border-t border-white/20 mt-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold">500+</div>
+              <div className="text-sm text-white/70 mt-1">Premium Products</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold">50+</div>
+              <div className="text-sm text-white/70 mt-1">Top Brands</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold">24/7</div>
+              <div className="text-sm text-white/70 mt-1">Customer Support</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold">100%</div>
+              <div className="text-sm text-white/70 mt-1">Secure Checkout</div>
             </div>
           </div>
         </div>

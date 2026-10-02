@@ -5,9 +5,10 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } },
+  props: { params: Promise<{ slug: string }> },
 ) {
   try {
+    const params = await props.params;
     const related = getRelated(params.slug, 4);
     return NextResponse.json(related, {
       status: 200,

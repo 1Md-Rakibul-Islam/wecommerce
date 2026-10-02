@@ -14,7 +14,7 @@ import { ChevronRight, Check } from 'lucide-react';
 import { Product } from '@/types/product';
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // SSG: Pre-render all product pages at build time
@@ -26,9 +26,8 @@ export async function generateStaticParams() {
 // ISR: Revalidate every hour
 export const revalidate = 3600;
 
-export async function generateMetadata({
-  params,
-}: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata(props: ProductPageProps): Promise<Metadata> {
+  const params = await props.params;
   const product = fetchProductISR(params.slug);
   if (!product) {
     return {
@@ -62,7 +61,8 @@ function formatPrice(price: number, currency: string = 'USD'): string {
   }).format(price);
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage(props: ProductPageProps) {
+  const params = await props.params;
   // ISR: Fetch product with revalidation
   const product = fetchProductISR(params.slug);
   if (!product) {
