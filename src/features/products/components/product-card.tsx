@@ -83,10 +83,16 @@ function ProductCardComponent({ product, priority = false }: ProductCardProps) {
       </div>
 
       <div className="flex flex-col flex-1 p-4">
-        <span className="text-xs font-medium text-muted-foreground mb-1">
-          {product.brand}
-        </span>
-        <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem]">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs font-medium text-muted-foreground mb-1">
+            {product.brand}
+          </span>
+          <span className="bg-black border border-border rounded-full px-2 py-0.5 text-xs font-medium text-white mb-1">
+            {product.category}
+          </span>
+        </div>
+
+        <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
           {product.name}
         </h3>
 
