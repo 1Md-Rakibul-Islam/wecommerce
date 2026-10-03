@@ -13,6 +13,7 @@ import {
 } from "@/lib/api/server-fetch";
 import { ProductCard } from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
+import { HeroSlider } from "@/components/home/hero-slider";
 
 const CATEGORIES = [
   {
@@ -92,73 +93,7 @@ export default function HomePage() {
 
   return (
     <div className="animate-fade-in">
-      <section className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Hero background"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/40 bg-gradient-to-t from-black/80 via-black/40 to-black/30 backdrop-blur-[2px]" />
-        </div>
-
-        {/* Content */}
-        <div className="container-page relative z-10 text-center text-white space-y-6 lg:space-y-8 px-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-medium">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            New Collection 2026
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-balance max-w-4xl mx-auto drop-shadow-lg">
-            Elevate Your Lifestyle with <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">Premium Picks</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            Discover a curated marketplace of top-tier electronics, fashion, and home goods. Experience seamless shopping from top vendors worldwide.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link href="/shop">
-              <Button size="lg" className="h-14 px-8 text-lg rounded-full font-semibold shadow-xl shadow-primary/25 hover:scale-105 transition-transform">
-                Shop The Collection
-                <ArrowRight size={20} className="ml-2" />
-              </Button>
-            </Link>
-            <Link href="/shop?category=Fashion">
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-14 px-8 text-lg rounded-full font-semibold border-white text-white hover:bg-white hover:text-black transition-colors"
-              >
-                Explore Fashion
-              </Button>
-            </Link>
-          </div>
-          
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 md:pt-16 max-w-4xl mx-auto border-t border-white/20 mt-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold">500+</div>
-              <div className="text-sm text-white/70 mt-1">Premium Products</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">50+</div>
-              <div className="text-sm text-white/70 mt-1">Top Brands</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">24/7</div>
-              <div className="text-sm text-white/70 mt-1">Customer Support</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">100%</div>
-              <div className="text-sm text-white/70 mt-1">Secure Checkout</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section className="border-y border-border bg-card">
         <div className="container-page py-6">
@@ -276,25 +211,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-primary text-primary-foreground">
-        <div className="container-page py-12 lg:py-16 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight mb-3">
-            Ready to start shopping?
-          </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-6">
-            Browse our full catalog of 500+ products with smart filters, fast
-            search, and secure checkout.
-          </p>
-          <Link href="/shop">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="h-12 px-8 text-base"
-            >
-              Browse All Products
-              <ArrowRight size={18} className="ml-2" />
-            </Button>
-          </Link>
+      <section className="bg-card border-y border-border overflow-hidden py-10">
+        <div className="container-page mb-6 text-center">
+          <h2 className="text-xl font-bold tracking-tight text-muted-foreground uppercase">Brands We Love</h2>
+        </div>
+        <div className="flex w-full overflow-hidden whitespace-nowrap group">
+          <div className="flex animate-marquee gap-16 px-8 items-center opacity-60">
+            {['Apple', 'Samsung', 'Nike', 'Adidas', 'Sony', 'IKEA', 'Dyson', 'Bose', 'Logitech', 'Nintendo'].map((brand, i) => (
+              <span key={i} className="text-3xl font-extrabold tracking-wider text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+                {brand}
+              </span>
+            ))}
+          </div>
+          <div className="flex animate-marquee gap-16 px-8 items-center opacity-60" aria-hidden="true">
+            {['Apple', 'Samsung', 'Nike', 'Adidas', 'Sony', 'IKEA', 'Dyson', 'Bose', 'Logitech', 'Nintendo'].map((brand, i) => (
+              <span key={i} className="text-3xl font-extrabold tracking-wider text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative bg-primary text-primary-foreground py-20 lg:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-[600px] h-[600px] bg-white/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-[600px] h-[600px] bg-black/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="container-page relative z-10">
+          <div className="max-w-2xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight">
+              Join Our Newsletter
+            </h2>
+            <p className="text-lg text-primary-foreground/90 max-w-xl mx-auto">
+              Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-4">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="flex-1 h-12 px-4 rounded-full bg-white/20 border border-white/30 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+                required
+              />
+              <Button
+                type="button"
+                size="lg"
+                variant="secondary"
+                className="h-12 px-8 rounded-full font-bold text-primary hover:scale-105 transition-transform"
+              >
+                Subscribe
+              </Button>
+            </div>
+            <p className="text-xs text-primary-foreground/70 mt-4">
+              By subscribing you agree to our Terms & Conditions and Privacy Policy.
+            </p>
+          </div>
         </div>
       </section>
     </div>

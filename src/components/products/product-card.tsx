@@ -50,19 +50,45 @@ function ProductCardComponent({ product, priority = false }: ProductCardProps) {
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className={cn(
-            'object-cover transition-transform duration-500 group-hover:scale-105',
+            'object-cover transition-all duration-700 group-hover:scale-110',
+            product.images.length > 1 ? 'group-hover:opacity-0' : '',
             outOfStock && 'opacity-60',
           )}
           priority={priority}
         />
+        {product.images.length > 1 && (
+          <Image
+            src={product.images[1]}
+            alt={`${product.name} alternate view`}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover absolute inset-0 opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110"
+          />
+        )}
+        
+        {/* Overlay Actions */}
+        <div className="absolute inset-x-0 bottom-0 p-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10 flex gap-2">
+          <button
+            onClick={handleAddToCart}
+            disabled={outOfStock || !mounted}
+            className="w-full bg-white/90 backdrop-blur-md text-black hover:bg-white font-semibold py-2.5 rounded-lg text-sm shadow-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+          >
+            <ShoppingBag size={16} />
+            {outOfStock ? 'Out of Stock' : 'Quick Add'}
+          </button>
+        </div>
+        
+        {/* Dark gradient overlay for bottom actions */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
         {discount && (
-          <span className="absolute top-3 left-3 bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 rounded-md">
+          <span className="absolute top-3 left-3 bg-red-500 text-white shadow-md text-xs font-bold px-2.5 py-1 rounded-md z-10">
             -{discount}%
           </span>
         )}
         {outOfStock && (
-          <span className="absolute top-3 right-3 bg-foreground/80 text-background text-xs font-medium px-2 py-1 rounded-md">
-            Out of Stock
+          <span className="absolute top-3 right-3 bg-foreground/90 backdrop-blur-md text-background text-xs font-medium px-2.5 py-1 rounded-md z-10">
+            Sold Out
           </span>
         )}
       </div>
@@ -89,20 +115,6 @@ function ProductCardComponent({ product, priority = false }: ProductCardProps) {
               </span>
             )}
           </div>
-
-          <button
-            onClick={handleAddToCart}
-            disabled={outOfStock || !mounted}
-            aria-label="Add to cart"
-            className={cn(
-              'flex h-9 w-9 items-center justify-center rounded-lg transition-all',
-              outOfStock
-                ? 'bg-muted text-muted-foreground cursor-not-allowed'
-                : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95',
-            )}
-          >
-            <ShoppingBag size={16} />
-          </button>
         </div>
       </div>
     </Link>
