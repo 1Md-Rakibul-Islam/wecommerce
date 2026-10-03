@@ -118,7 +118,7 @@ export function HeroSlider() {
                       <Link href={slide.link}>
                         <Button
                           size="lg"
-                          className="h-14 px-8 text-lg rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-primary/50 transition-all"
+                          className="h-14 px-8 text-lg rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-primary/50 transition-all bg-primary text-white hover:bg-primary/90"
                         >
                           {slide.buttonText}
                           <ArrowRight size={20} className="ml-2" />

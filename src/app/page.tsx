@@ -21,6 +21,7 @@ import {
 import { ProductCard } from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { TestimonialSlider } from "@/components/home/testimonial-slider";
 
 const CATEGORIES = [
   {
@@ -209,7 +210,7 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="h-12 px-8 text-base border-white/20 text-white hover:bg-white/10 hover:text-white hover:border-white/30"
+                    className="h-12 px-8 text-base border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white hover:border-white/30"
                   >
                     New Arrivals
                     <ArrowRight
@@ -538,44 +539,7 @@ export default function HomePage() {
               to say
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((testimonial) => (
-              <div
-                key={testimonial.name}
-                className="rounded-2xl border border-border bg-card p-6 card-hover-lift hover:shadow-lg"
-              >
-                <div className="flex items-center gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className="fill-warning text-warning"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="relative h-11 w-11 rounded-full overflow-hidden border border-border shrink-0">
-                    <Image
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialSlider />
         </div>
       </section>
 
@@ -617,8 +581,7 @@ export default function HomePage() {
           <Link href="/shop">
             <Button
               size="lg"
-              variant="secondary"
-              className="h-12 px-8 text-base group"
+              className="h-12 px-8 text-base group bg-white text-slate-900 hover:bg-slate-100 hover:text-slate-900 border-none shadow-lg"
             >
               Browse All Products
               <ArrowRight

@@ -53,7 +53,7 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
   const currentBrands = searchParams.get('brand')?.split(',').filter(Boolean) || [];
   const currentMinPrice = Number(searchParams.get('minPrice')) || 0;
   const currentMaxPrice = Number(searchParams.get('maxPrice')) || facets.priceRange.max;
-  const currentMinRating = Number(searchParams.get('minRating')) || 0;
+  const currentRatings = searchParams.get('rating')?.split(',').map(r => Number(r)).filter(Boolean) || [];
   const currentTags = searchParams.get('tags')?.split(',').filter(Boolean) || [];
 
   const navigate = useCallback(
@@ -105,13 +105,16 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
     [navigate, currentBrands],
   );
 
-  const handleRatingChange = useCallback(
+  const handleRatingToggle = useCallback(
     (rating: number) => {
+      const newRatings = currentRatings.includes(rating)
+        ? currentRatings.filter((r) => r !== rating)
+        : [...currentRatings, rating];
       navigate({
-        minRating: currentMinRating === rating ? undefined : String(rating),
+        rating: newRatings.length > 0 ? newRatings.join(',') : undefined,
       });
     },
-    [navigate, currentMinRating],
+    [navigate, currentRatings],
   );
 
   const handleTagToggle = useCallback(
@@ -220,8 +223,8 @@ function FilterSidebarComponent({ facets }: FilterSidebarProps) {
                 className="flex items-center gap-2 cursor-pointer py-1 group"
               >
                 <Checkbox
-                  checked={currentMinRating === rating}
-                  onCheckedChange={() => handleRatingChange(rating)}
+                  checked={currentRatings.includes(rating)}
+                  onCheckedChange={() => handleRatingToggle(rating)}
                 />
                 <span className="text-sm group-hover:text-primary transition-colors">
                   {rating}★ & up

@@ -93,8 +93,14 @@ function applyFilters(products: Product[], filters: ProductFilters, ignoreCatego
       if (filters.maxPrice !== undefined && p.price > filters.maxPrice) return false;
     }
     
-    if (filters.minRating !== undefined && p.rating < filters.minRating) return false;
-    
+    if (filters.rating) {
+      const roundedRating = Math.floor(p.rating);
+      if (Array.isArray(filters.rating)) {
+        if (!filters.rating.includes(roundedRating)) return false;
+      } else {
+        if (roundedRating !== filters.rating) return false;
+      }
+    }
     if (filters.tags && filters.tags.length > 0) {
       if (!filters.tags.every((tag) => p.tags.includes(tag))) return false;
     }

@@ -7,7 +7,7 @@ export interface UrlFilters {
   brand?: string;
   minPrice?: string;
   maxPrice?: string;
-  minRating?: string;
+  rating?: string;
   tags?: string;
   sort?: SortOption;
   page?: string;
@@ -33,7 +33,7 @@ export function filtersToParams(filters: ProductFilters): Record<string, string>
   if (filters.brand) params.brand = Array.isArray(filters.brand) ? filters.brand.join(',') : filters.brand;
   if (filters.minPrice !== undefined) params.minPrice = String(filters.minPrice);
   if (filters.maxPrice !== undefined) params.maxPrice = String(filters.maxPrice);
-  if (filters.minRating !== undefined) params.minRating = String(filters.minRating);
+  if (filters.rating !== undefined) params.rating = Array.isArray(filters.rating) ? filters.rating.join(',') : String(filters.rating);
   if (filters.tags && filters.tags.length > 0) params.tags = filters.tags.join(',');
   if (filters.sort && filters.sort !== 'relevance') params.sort = filters.sort;
   if (filters.page && filters.page > 1) params.page = String(filters.page);
@@ -54,8 +54,8 @@ export function paramsToFilters(params: URLSearchParams): ProductFilters {
   if (minPrice) filters.minPrice = Number(minPrice);
   const maxPrice = params.get('maxPrice');
   if (maxPrice) filters.maxPrice = Number(maxPrice);
-  const minRating = params.get('minRating');
-  if (minRating) filters.minRating = Number(minRating);
+  const rating = params.get('rating');
+  if (rating) filters.rating = rating.includes(',') ? rating.split(',').map(r => Number(r.trim())) : Number(rating);
   const tags = params.get('tags');
   if (tags) filters.tags = tags.split(',').map((t) => t.trim()).filter(Boolean);
   const sort = params.get('sort');
@@ -79,7 +79,7 @@ export function buildFilterUrl(
     }
   }
 
-  if (!updates.page && (updates.category !== undefined || updates.brand !== undefined || updates.minPrice !== undefined || updates.maxPrice !== undefined || updates.minRating !== undefined || updates.tags !== undefined || updates.search !== undefined || updates.sort !== undefined)) {
+  if (!updates.page && (updates.category !== undefined || updates.brand !== undefined || updates.minPrice !== undefined || updates.maxPrice !== undefined || updates.rating !== undefined || updates.tags !== undefined || updates.search !== undefined || updates.sort !== undefined)) {
     params.delete('page');
   }
 
@@ -95,7 +95,7 @@ export function hasActiveFilters(params: URLSearchParams): boolean {
     params.has('brand') ||
     params.has('minPrice') ||
     params.has('maxPrice') ||
-    params.has('minRating') ||
+    params.has('rating') ||
     params.has('tags')
   );
 }

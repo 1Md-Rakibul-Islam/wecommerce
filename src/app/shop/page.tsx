@@ -103,9 +103,11 @@ export default async function ShopPage(props: ShopPageProps) {
             </div>
           </div>
 
-          <Suspense fallback={<div className="h-10" />}>
-            <ActiveFilters />
-          </Suspense>
+          <div className="mb-6">
+            <Suspense fallback={<div className="h-10" />}>
+              <ActiveFilters />
+            </Suspense>
+          </div>
 
           {result.products.length === 0 ? (
             filters.search ? (

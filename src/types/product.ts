@@ -39,7 +39,7 @@ export interface ProductFilters {
   brand?: string | string[];
   minPrice?: number;
   maxPrice?: number;
-  minRating?: number;
+  rating?: number | number[];
   tags?: string[];
   sort?: SortOption;
   page?: number;

@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronRight, Check } from "lucide-react";
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // SSG: Pre-render all product pages at build time
@@ -32,7 +32,8 @@ export const revalidate = 3600;
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
-  const product = fetchProductISR(params.slug);
+  const { slug } = await params;
+  const product = fetchProductISR(slug);
   if (!product) {
     return {
       title: "Product Not Found",
@@ -66,15 +67,16 @@ function formatPrice(price: number, currency: string = "USD"): string {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
   // ISR: Fetch product with revalidation
-  const product = fetchProductISR(params.slug);
+  const product = fetchProductISR(slug);
   if (!product) {
     notFound();
   }
 
   // SSG: Fetch related products at build time as fallback (reads from JSON)
   // Client-side TanStack Query will refresh them via API (CSR)
-  const relatedFallback = fetchRelatedSSG(params.slug, 4);
+  const relatedFallback = fetchRelatedSSG(slug, 4);
 
   return (
     <>
@@ -144,22 +146,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <div className="mt-12">
           <Tabs defaultValue="description">
-            <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b border-border rounded-none">
+            <TabsList className="inline-flex h-12 items-center justify-start rounded-full bg-muted/50 p-1 text-muted-foreground w-full sm:w-auto overflow-x-auto scrollbar-hide">
               <TabsTrigger
                 value="description"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent pb-3"
+                className="rounded-full px-6 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 Description
               </TabsTrigger>
               <TabsTrigger
                 value="specifications"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent pb-3"
+                className="rounded-full px-6 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 Specifications
               </TabsTrigger>
               <TabsTrigger
                 value="reviews"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent pb-3"
+                className="rounded-full px-6 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
               >
                 Reviews ({product.reviewCount})
               </TabsTrigger>
@@ -202,10 +204,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Tabs>
         </div>
 
-        {/* CSR: Related products fetched client-side with TanStack Query,
-             with SSG fallback products for instant display */}
         <RelatedProducts
-          slug={params.slug}
+          slug={slug}
           fallbackProducts={relatedFallback}
         />
       </div>
