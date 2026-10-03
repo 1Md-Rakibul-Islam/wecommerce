@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getProducts, ProductNotFoundError } from '@/lib/api/products';
+import { getProducts, ProductNotFoundError } from '@/features/products/api/products';
 import { ProductFilters, SortOption } from '@/types/product';
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
       brand: params.get('brand') || undefined,
       minPrice: parseNumberParam(params.get('minPrice')),
       maxPrice: parseNumberParam(params.get('maxPrice')),
-      minRating: parseNumberParam(params.get('minRating')),
+      rating: params.get('rating') ? params.get('rating')!.split(',').map(Number) : undefined,
       tags: parseArrayParam(params.get('tags')),
       sort: (params.get('sort') as SortOption) || undefined,
       page: parseNumberParam(params.get('page')),

@@ -1,5 +1,5 @@
 import { Review } from '@/types/product';
-import { StarRating } from '@/components/products/star-rating';
+import { StarRating } from '@/features/products/components/star-rating';
 import { formatDate } from '@/lib/format';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2 } from 'lucide-react';

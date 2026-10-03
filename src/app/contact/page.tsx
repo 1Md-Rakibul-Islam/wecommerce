@@ -8,7 +8,7 @@ import {
   Headphones,
   Package,
 } from "lucide-react";
-import { ContactForm } from "@/components/forms/contact-form";
+import { ContactForm } from "@/features/contact/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact ShopCraft",

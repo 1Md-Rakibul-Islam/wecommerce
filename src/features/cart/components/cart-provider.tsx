@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { CartDrawer } from '@/components/layout/cart-drawer';
+import { CartDrawer } from '@/features/cart/components/cart-drawer';
 
 interface CartUIContextValue {
   cartOpen: boolean;

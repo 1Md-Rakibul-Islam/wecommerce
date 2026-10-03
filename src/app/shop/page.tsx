@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
-import { fetchProductsSSR } from '@/lib/api/server-fetch';
+import { fetchProductsSSR } from '@/features/products/api/server-fetch';
 import { paramsToFilters } from '@/lib/filters';
-import { ProductGrid } from '@/components/products/product-grid';
-import { FilterSidebar } from '@/components/products/filter-sidebar';
-import { SortDropdown } from '@/components/products/sort-dropdown';
-import { ActiveFilters } from '@/components/products/active-filters';
-import { MobileFilters } from '@/components/products/mobile-filters';
-import { Pagination } from '@/components/products/pagination';
-import { SearchEmptyState, EmptyState, ErrorState } from '@/components/products/state-components';
+import { ProductGrid } from '@/features/products/components/product-grid';
+import { FilterSidebar } from '@/features/products/components/filter-sidebar';
+import { SortDropdown } from '@/features/products/components/sort-dropdown';
+import { ActiveFilters } from '@/features/products/components/active-filters';
+import { MobileFilters } from '@/features/products/components/mobile-filters';
+import { Pagination } from '@/features/products/components/pagination';
+import { SearchEmptyState, EmptyState, ErrorState } from '@/features/products/components/state-components';
 import { formatNumber, pluralize } from '@/lib/format';
 import type { Metadata } from 'next';
 

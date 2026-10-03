@@ -1,6 +1,6 @@
 import { Product, ProductFilters } from '@/types/product';
 import { getAllProducts, getAllProductSlugs, getRelatedProducts } from '@/lib/products-data';
-import { getProducts } from '@/lib/api/products';
+import { getProducts } from '@/features/products/api/products';
 
 // Server-side data access utilities
 // SSG/ISR pages read JSON data directly from disk (no running server needed)

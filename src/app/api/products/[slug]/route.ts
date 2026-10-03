@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getProduct, getRelated, ProductNotFoundError } from '@/lib/api/products';
+import { getProduct, getRelated, ProductNotFoundError } from '@/features/products/api/products';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
-    const product = getProduct(params.slug);
+    const { slug } = await params;
+    const product = getProduct(slug);
     return NextResponse.json(product, {
       status: 200,
       headers: {

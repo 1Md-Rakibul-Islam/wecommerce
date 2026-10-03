@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { FilterSidebar } from '@/components/products/filter-sidebar';
+import { FilterSidebar } from '@/features/products/components/filter-sidebar';
 import { Facets } from '@/types/product';
 
 interface MobileFiltersProps {

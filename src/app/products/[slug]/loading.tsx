@@ -1,4 +1,4 @@
-import { ProductDetailSkeleton } from '@/components/products/product-skeletons';
+import { ProductDetailSkeleton } from '@/features/products/components/product-skeletons';
 
 export default function ProductLoading() {
   return <ProductDetailSkeleton />;

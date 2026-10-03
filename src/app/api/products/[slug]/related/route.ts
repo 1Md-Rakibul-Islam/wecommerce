@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getRelated, ProductNotFoundError } from '@/lib/api/products';
+import { getRelated, ProductNotFoundError } from '@/features/products/api/products';
 
 export const dynamic = 'force-dynamic';
 

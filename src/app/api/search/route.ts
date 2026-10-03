@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSearchSuggestions } from '@/lib/api/products';
+import { getSearchSuggestions } from '@/features/products/api/products';
 
 export const dynamic = 'force-dynamic';
 

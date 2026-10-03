@@ -5,11 +5,11 @@ import {
   fetchProductISR,
   fetchAllProductSlugs,
   fetchRelatedSSG,
-} from "@/lib/api/server-fetch";
-import { ProductGallery } from "@/components/products/product-gallery";
-import { AddToCartSection } from "@/components/products/add-to-cart-section";
-import { ReviewList } from "@/components/products/review-list";
-import { RelatedProducts } from "@/components/products/related-products";
+} from "@/features/products/api/server-fetch";
+import { ProductGallery } from "@/features/products/components/product-gallery";
+import { AddToCartSection } from "@/features/products/components/add-to-cart-section";
+import { ReviewList } from "@/features/products/components/review-list";
+import { RelatedProducts } from "@/features/products/components/related-products";
 import { ProductJsonLd } from "@/components/seo/product-json-ld";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";

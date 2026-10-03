@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useRelatedProducts } from '@/hooks/use-product-queries';
-import { ProductCard } from '@/components/products/product-card';
-import { ProductGridSkeleton } from '@/components/products/product-skeletons';
+import { ProductCard } from '@/features/products/components/product-card';
+import { ProductGridSkeleton } from '@/features/products/components/product-skeletons';
 
 interface RelatedProductsProps {
   slug: string;

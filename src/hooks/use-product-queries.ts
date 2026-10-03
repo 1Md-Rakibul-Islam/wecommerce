@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient, API_ENDPOINTS } from '@/lib/api-client';
 import { Product, PaginatedProducts } from '@/types/product';
-import type { ProductsResult } from '@/lib/api/products';
+import type { ProductsResult } from '@/features/products/api/products';
 
 export interface SearchSuggestion {
   type: 'product' | 'category' | 'brand';

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { CartProvider } from "@/components/layout/cart-provider";
+import { CartProvider } from "@/features/cart/components/cart-provider";
 import { QueryProvider } from "@/providers/query-provider";
 
 const inter = Inter({

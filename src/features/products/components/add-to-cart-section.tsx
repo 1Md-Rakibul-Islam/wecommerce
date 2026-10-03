@@ -2,11 +2,11 @@
 
 import { useState, useCallback, useMemo } from 'react';
 import { ShoppingBag, Minus, Plus, Check, AlertCircle } from 'lucide-react';
-import { useCartStore } from '@/store/cart-store';
+import { useCartStore } from '@/features/cart/store/cart-store';
 import { useMounted } from '@/hooks/use-mounted';
 import { formatPrice, getDiscountPercent, getStockStatus } from '@/lib/format';
 import { Button } from '@/components/ui/button';
-import { StarRating } from '@/components/products/star-rating';
+import { StarRating } from '@/features/products/components/star-rating';
 import { Product } from '@/types/product';
 import { cn } from '@/lib/utils';
 
