@@ -13,14 +13,14 @@ export function AboutHero() {
               About ShopCraft
             </span>
             <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-balance mb-6 leading-[1.1]">
-              Premium products for <span className="text-gradient">modern living</span>
+              Premium products for{" "}
+              <span className="text-gradient">modern living</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0">
               ShopCraft was founded with a simple mission: to make quality
-              products accessible to everyone. From electronics to fashion,
-              home goods to sports gear, we curate the best across 8
-              categories so you can find exactly what you need with
-              confidence.
+              products accessible to everyone. From electronics to fashion, home
+              goods to sports gear, we curate the best across 8 categories so
+              you can find exactly what you need with confidence.
             </p>
           </div>
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">

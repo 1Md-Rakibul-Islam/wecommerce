@@ -6,7 +6,7 @@ import { memo } from "react";
 import { ShoppingBag, Eye } from "lucide-react";
 import { Product } from "@/types/product";
 import { formatPrice, getDiscountPercent, getStockStatus } from "@/lib/format";
-import { useCartStore } from "@/features/cart/store/cart-store";
+import { useCartStore } from "@/store/cart-store";
 import { useMounted } from "@/hooks/use-mounted";
 import { StarRating } from "@/features/products/components/star-rating";
 import { cn } from "@/lib/utils";

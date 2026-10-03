@@ -7,9 +7,8 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useCartUI } from "@/features/cart/components/cart-provider";
 import { useMounted } from "@/hooks/use-mounted";
-import { useCartStore } from "@/features/cart/store/cart-store";
+import { useCartStore } from "@/store/cart-store";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const NAV_LINKS = [

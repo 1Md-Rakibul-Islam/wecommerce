@@ -71,7 +71,7 @@ export default function RootLayout({
         <QueryProvider>
           <CartProvider>
             <SiteHeader />
-            <main className="flex-1">{children}</main>
+            {children}
             <SiteFooter />
           </CartProvider>
         </QueryProvider>

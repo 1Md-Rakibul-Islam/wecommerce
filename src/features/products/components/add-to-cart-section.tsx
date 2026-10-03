@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useMemo } from 'react';
-import { ShoppingBag, Minus, Plus, Check, AlertCircle } from 'lucide-react';
-import { useCartStore } from '@/features/cart/store/cart-store';
-import { useMounted } from '@/hooks/use-mounted';
-import { formatPrice, getDiscountPercent, getStockStatus } from '@/lib/format';
-import { Button } from '@/components/ui/button';
-import { StarRating } from '@/features/products/components/star-rating';
-import { Product } from '@/types/product';
-import { cn } from '@/lib/utils';
+import { useState, useCallback } from "react";
+import { ShoppingBag, Minus, Plus, Check, AlertCircle } from "lucide-react";
+import { useCartStore } from "@/store/cart-store";
+import { useMounted } from "@/hooks/use-mounted";
+import { formatPrice, getDiscountPercent, getStockStatus } from "@/lib/format";
+import { Button } from "@/components/ui/button";
+import { StarRating } from "@/features/products/components/star-rating";
+import { Product } from "@/types/product";
+import { cn } from "@/lib/utils";
 
 interface AddToCartSectionProps {
   product: Product;
@@ -38,7 +38,7 @@ export function AddToCartSection({ product }: AddToCartSectionProps) {
       quantity,
     );
     setAdded(true);
-    window.dispatchEvent(new Event('open-cart-drawer'));
+    window.dispatchEvent(new Event("open-cart-drawer"));
     setTimeout(() => setAdded(false), 2000);
   }, [addItem, product, quantity, outOfStock]);
 
@@ -70,22 +70,24 @@ export function AddToCartSection({ product }: AddToCartSectionProps) {
       <div className="flex items-center gap-2">
         <span
           className={cn(
-            'inline-flex items-center gap-1.5 text-sm font-medium',
-            stockStatus.variant === 'out-of-stock'
-              ? 'text-destructive'
-              : stockStatus.variant === 'low-stock'
-                ? 'text-warning'
-                : 'text-success',
+            "inline-flex items-center gap-1.5 text-sm font-medium",
+            stockStatus.variant === "out-of-stock"
+              ? "text-destructive"
+              : stockStatus.variant === "low-stock"
+                ? "text-warning"
+                : "text-success",
           )}
         >
-          {stockStatus.variant === 'out-of-stock' ? (
+          {stockStatus.variant === "out-of-stock" ? (
             <AlertCircle size={16} />
           ) : (
             <Check size={16} />
           )}
           {stockStatus.label}
         </span>
-        <span className="text-sm text-muted-foreground">SKU: {product.sku}</span>
+        <span className="text-sm text-muted-foreground">
+          SKU: {product.sku}
+        </span>
       </div>
 
       <div className="border-t border-border pt-5 space-y-4">
@@ -126,7 +128,7 @@ export function AddToCartSection({ product }: AddToCartSectionProps) {
             ) : (
               <>
                 <ShoppingBag size={18} className="mr-2" />
-                {outOfStock ? 'Out of Stock' : 'Add to Cart'}
+                {outOfStock ? "Out of Stock" : "Add to Cart"}
               </>
             )}
           </Button>

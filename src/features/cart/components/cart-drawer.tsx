@@ -1,16 +1,20 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { ShoppingBag, Trash2, Plus, Minus, X } from 'lucide-react';
-import Link from 'next/link';
-import { useCartUI } from '@/features/cart/components/cart-provider';
-import { useCartStore } from '@/features/cart/store/cart-store';
-import { useMounted } from '@/hooks/use-mounted';
-import { formatPrice } from '@/lib/format';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Separator } from '@/components/ui/separator';
+import { useMemo } from "react";
+import { ShoppingBag, Trash2, Plus, Minus, X } from "lucide-react";
+import Link from "next/link";
+import { useCartUI } from "@/features/cart/components/cart-provider";
+import { useCartStore } from "@/store/cart-store";
+import { useMounted } from "@/hooks/use-mounted";
+import { formatPrice } from "@/lib/format";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 
 export function CartDrawer() {
   const cartUI = useCartUI();
@@ -20,7 +24,10 @@ export function CartDrawer() {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
 
   const totals = useMemo(() => {
-    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    );
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const shipping = subtotal > 75 || subtotal === 0 ? 0 : 7.99;
     const total = Math.round((subtotal + shipping) * 100) / 100;
@@ -87,7 +94,9 @@ export function CartDrawer() {
                       <div className="flex items-center border border-border rounded-md">
                         <button
                           className="p-1 hover:bg-muted rounded-l-md"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                           aria-label="Decrease quantity"
                         >
                           <Minus size={14} />
@@ -97,7 +106,9 @@ export function CartDrawer() {
                         </span>
                         <button
                           className="p-1 hover:bg-muted rounded-r-md"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                           disabled={item.quantity >= item.stock}
                           aria-label="Increase quantity"
                         >
@@ -123,12 +134,16 @@ export function CartDrawer() {
             <div className="border-t border-border px-5 py-4 space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-medium">{formatPrice(totals.subtotal)}</span>
+                <span className="font-medium">
+                  {formatPrice(totals.subtotal)}
+                </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Shipping</span>
                 <span className="font-medium">
-                  {totals.shipping === 0 ? 'Free' : formatPrice(totals.shipping)}
+                  {totals.shipping === 0
+                    ? "Free"
+                    : formatPrice(totals.shipping)}
                 </span>
               </div>
               {totals.shipping > 0 && (
@@ -139,7 +154,9 @@ export function CartDrawer() {
               <Separator />
               <div className="flex justify-between">
                 <span className="font-semibold">Total</span>
-                <span className="font-bold text-lg">{formatPrice(totals.total)}</span>
+                <span className="font-bold text-lg">
+                  {formatPrice(totals.total)}
+                </span>
               </div>
               <Link href="/checkout" onClick={closeCart} className="block">
                 <Button className="w-full" size="lg">

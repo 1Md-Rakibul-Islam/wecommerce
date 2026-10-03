@@ -1,38 +1,42 @@
-'use client';
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import Image from 'next/image';
-import { Star } from 'lucide-react';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import Image from "next/image";
+import { Star } from "lucide-react";
+import "swiper/css";
+import "swiper/css/pagination";
 
-const TESTIMONIALS = [
+export const TESTIMONIALS = [
   {
     name: "Sarah Mitchell",
     role: "Verified Buyer",
-    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
+    avatar:
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
     rating: 5,
     text: "Absolutely love shopping here. The product quality is outstanding and delivery is super fast. I have made five orders and never been disappointed.",
   },
   {
     name: "James Chen",
     role: "Verified Buyer",
-    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200",
+    avatar:
+      "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200",
     rating: 5,
     text: "The checkout process is seamless and the customer support team is incredibly responsive. My go-to online store for everything I need.",
   },
   {
     name: "Emily Rodriguez",
     role: "Verified Buyer",
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200",
+    avatar:
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200",
     rating: 5,
     text: "Great prices, huge selection, and the returns process could not be easier. I recommend ShopCraft to all my friends and family.",
   },
   {
     name: "David Kim",
     role: "Verified Buyer",
-    avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200",
+    avatar:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200",
     rating: 5,
     text: "I was blown away by the amazing deals on electronics. Fast shipping and the product was exactly as described. Will be shopping again!",
   },
@@ -45,7 +49,10 @@ export function TestimonialSlider() {
       spaceBetween={24}
       slidesPerView={1}
       autoplay={{ delay: 5000, disableOnInteraction: true }}
-      pagination={{ clickable: true, bulletClass: 'swiper-pagination-bullet !bg-primary' }}
+      pagination={{
+        clickable: true,
+        bulletClass: "swiper-pagination-bullet !bg-primary",
+      }}
       breakpoints={{
         640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
@@ -76,7 +83,9 @@ export function TestimonialSlider() {
               </div>
               <div>
                 <p className="font-semibold text-sm">{testimonial.name}</p>
-                <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                <p className="text-xs text-muted-foreground">
+                  {testimonial.role}
+                </p>
               </div>
             </div>
           </div>

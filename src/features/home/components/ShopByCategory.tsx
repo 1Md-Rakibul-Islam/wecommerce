@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
-
+import Link from "next/link";
+import Image from "next/image";
 
 const CATEGORIES = [
   {
@@ -49,53 +48,48 @@ const CATEGORIES = [
 
 export function ShopByCategory() {
   return (
-    <>
-      {/**/}
-      <section className="container-page py-12 lg:py-16">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
-              Shop by Category
-            </h2>
-            <p className="text-muted-foreground mt-1">
-              Find exactly what you are looking for
-            </p>
-          </div>
-          <Link
-            href="/shop"
-            className="text-sm font-medium text-primary hover:underline hidden sm:block"
-          >
-            View all
-          </Link>
+    <section className="container-page py-12 lg:py-16">
+      <div className="flex items-end justify-between mb-8">
+        <div>
+          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+            Shop by Category
+          </h2>
+          <p className="text-muted-foreground mt-1">
+            Find exactly what you are looking for
+          </p>
         </div>
+        <Link
+          href="/shop"
+          className="text-sm font-medium text-primary hover:underline hidden sm:block"
+        >
+          View all
+        </Link>
+      </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
-          {CATEGORIES.map((category) => (
-            <Link
-              key={category.name}
-              href={category.href}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-border card-hover-lift hover:shadow-xl"
-            >
-              <Image
-                src={category.image}
-                alt={category.name}
-                fill
-                sizes="(max-width: 640px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-lg font-bold text-white">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-white/80 mt-0.5 line-clamp-1">
-                  {category.description}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
+        {CATEGORIES.map((category) => (
+          <Link
+            key={category.name}
+            href={category.href}
+            className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-border card-hover-lift hover:shadow-xl"
+          >
+            <Image
+              src={category.image}
+              alt={category.name}
+              fill
+              sizes="(max-width: 640px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="text-lg font-bold text-white">{category.name}</h3>
+              <p className="text-sm text-white/80 mt-0.5 line-clamp-1">
+                {category.description}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

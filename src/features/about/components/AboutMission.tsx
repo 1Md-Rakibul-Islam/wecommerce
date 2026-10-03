@@ -13,10 +13,10 @@ export function AboutMission() {
             <p className="text-muted-foreground leading-relaxed">
               We believe that shopping online should be easy, enjoyable, and
               trustworthy. That is why we built ShopCraft — a curated
-              marketplace where every product meets our quality standards,
-              every checkout is secure, and every customer feels valued. Our
-              mission is to bring you the best products from around the world,
-              all in one place.
+              marketplace where every product meets our quality standards, every
+              checkout is secure, and every customer feels valued. Our mission
+              is to bring you the best products from around the world, all in
+              one place.
             </p>
           </div>
           <div>
@@ -27,10 +27,10 @@ export function AboutMission() {
               </h2>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Quality, transparency, and customer satisfaction are at the
-              heart of everything we do. We partner with trusted brands, offer
-              honest pricing, and stand behind every product with a 30-day
-              return guarantee. Your trust is our most valuable asset.
+              Quality, transparency, and customer satisfaction are at the heart
+              of everything we do. We partner with trusted brands, offer honest
+              pricing, and stand behind every product with a 30-day return
+              guarantee. Your trust is our most valuable asset.
             </p>
           </div>
         </div>

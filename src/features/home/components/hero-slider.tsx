@@ -11,36 +11,7 @@ import { Button } from "@/components/ui/button";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
-
-const SLIDES = [
-  {
-    id: 1,
-    title: "Next-Gen Electronics",
-    subtitle: "Discover the latest gadgets and smart devices",
-    image:
-      "https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    link: "/shop?category=Electronics",
-    buttonText: "Shop Electronics",
-  },
-  {
-    id: 2,
-    title: "Elevate Your Style",
-    subtitle: "Premium fashion collections for the modern trendsetter",
-    image:
-      "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    link: "/shop?category=Fashion",
-    buttonText: "Explore Fashion",
-  },
-  {
-    id: 3,
-    title: "Modern Home Decor",
-    subtitle: "Transform your space with our exclusive furniture",
-    image:
-      "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    link: "/shop?category=Home+%26+Living",
-    buttonText: "Upgrade Home",
-  },
-];
+import { HERO_SLIDES } from "../data/home-data";
 
 export function HeroSlider() {
   return (
@@ -57,7 +28,7 @@ export function HeroSlider() {
         }}
         className="w-full h-full absolute inset-0 z-0"
       >
-        {SLIDES.map((slide) => (
+        {HERO_SLIDES?.map((slide) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full">
             {({ isActive }) => (
               <>

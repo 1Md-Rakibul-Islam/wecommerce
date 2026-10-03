@@ -1,7 +1,13 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { CartDrawer } from '@/features/cart/components/cart-drawer';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
+import { CartDrawer } from "@/features/cart/components/cart-drawer";
 
 interface CartUIContextValue {
   cartOpen: boolean;
@@ -17,6 +23,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -30,23 +37,25 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       e.preventDefault();
       openCart();
     };
-    window.addEventListener('open-cart-drawer', handler);
-    return () => window.removeEventListener('open-cart-drawer', handler);
+    window.addEventListener("open-cart-drawer", handler);
+    return () => window.removeEventListener("open-cart-drawer", handler);
   }, [mounted, openCart]);
 
   useEffect(() => {
     if (cartOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [cartOpen]);
 
   return (
-    <CartUIContext.Provider value={{ cartOpen, openCart, closeCart, toggleCart }}>
+    <CartUIContext.Provider
+      value={{ cartOpen, openCart, closeCart, toggleCart }}
+    >
       {children}
       {mounted && <CartDrawer />}
     </CartUIContext.Provider>

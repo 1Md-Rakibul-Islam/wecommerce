@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore, CartItem } from '@/features/cart/store/cart-store';
+import { useCartStore, CartItem } from '@/store/cart-store';
 import { useMemo } from 'react';
 
 export function useCart() {
